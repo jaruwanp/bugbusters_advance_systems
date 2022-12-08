@@ -8,11 +8,13 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 "pretty",
-                "html:target/report.html"
+                "html:target/report.html",
+                "rerun:target/rerun.txt"
         },
         features = "@target/rerun.txt",
         glue = "step_definitions",
-        stepNotifications = true
+        stepNotifications = true,
+        dryRun = false
 )
 public class ReRunFailed {
 }
