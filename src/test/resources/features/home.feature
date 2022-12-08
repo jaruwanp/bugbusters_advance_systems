@@ -1,5 +1,8 @@
-Feature: Homepage tests
-  @ASB-6 @regression
-  Scenario: Verify header of current project
+Feature: Home page tests
+
+  Background: Navigate to Home Page
     Given I open url of homepage
-    Then Verify title of the homepage should be "Advance Systems - Home"
+
+  @ABS-6 @regression @smoke
+  Scenario: Test header of the home page
+    Then Verify header text is "Advance Systems - Home"
