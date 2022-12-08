@@ -5,6 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
+
 @CucumberOptions(
         plugin = {
                 "pretty",
@@ -16,7 +17,9 @@ import org.junit.runner.RunWith;
         glue = "step_definitions",
         stepNotifications = true,
         dryRun = false,
-        tags = "@ASB-3"
+        tags = "@ASB-6"
+
 )
+
 public class CukesRunner {
 }
