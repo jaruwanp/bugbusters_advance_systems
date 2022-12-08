@@ -9,38 +9,43 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CucumberLogUtils {
+
     private static Scenario currentScenario;
 
-    public static void initScenario(Scenario scenario){
+    public static void initScenario(Scenario scenario) {
         currentScenario = scenario;
     }
 
-    public static void logPass(String msg, boolean takeScreenshot){
+    public static void logPass(String msg, boolean takeScreenshot) {
         currentScenario.log(getLogTime() + "  PASS: " + msg);
-        attachScreenshot(takeScreenshot);
+        if (takeScreenshot) {
+            final byte[] screenshot = ((TakesScreenshot) BrowserUtils.getDriver())
+                    .getScreenshotAs(OutputType.BYTES);
+            currentScenario.attach(screenshot, "image/png", "screenshot");
+        }
     }
 
-    public static void logInfo(String msg, boolean takeScreenshot){
+    public static void logInfo(String msg, boolean takeScreenshot) {
         currentScenario.log(getLogTime() + "  INFO: " + msg);
-        attachScreenshot(takeScreenshot);
-    }
-    public static void logFail(String msg, boolean takeScreenshot){
-        currentScenario.log(getLogTime() + "  FAIL: " + msg);
-        attachScreenshot(takeScreenshot);
+        if (takeScreenshot) {
+            final byte[] screenshot = ((TakesScreenshot) BrowserUtils.getDriver())
+                    .getScreenshotAs(OutputType.BYTES);
+            currentScenario.attach(screenshot, "image/png", "screenshot");
+        }
     }
 
-    public static String getLogTime(){
-        String format = "yyy-MM-dd HH:mm:ss";
+    public static void logFail(String msg, boolean takeScreenshot) {
+        currentScenario.log(getLogTime() + "  FAIL: " + msg);
+        if (takeScreenshot) {
+            final byte[] screenshot = ((TakesScreenshot) BrowserUtils.getDriver())
+                    .getScreenshotAs(OutputType.BYTES);
+            currentScenario.attach(screenshot, "image/png", "screenshot");
+        }
+    }
+    public static String getLogTime() {
+        String format = "yyyy-MM-dd HH:mm:ss";
         DateFormat dateFormat = new SimpleDateFormat(format);
         Calendar calendar = Calendar.getInstance();
         return dateFormat.format(calendar.getTime());
-    }
-
-  public static void attachScreenshot(boolean takeScreenshot){
-        if(takeScreenshot){
-            final byte[] screenshot = ((TakesScreenshot) BrowserUtils.getDriver()).getScreenshotAs(OutputType.BYTES);
-            currentScenario.attach(screenshot, "image/png", "screenshot");
-
-        }
     }
 }

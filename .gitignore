@@ -1,5 +1,3 @@
 /.idea
 /target
-config.properties
-pom.xml
-/src/test/java/runners/CukesRunner.java
+private_bugsbuster.iml
