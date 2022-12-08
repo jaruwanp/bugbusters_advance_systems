@@ -72,7 +72,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>Private Bugsbuster BDD</projectName>
+                            <projectName>Advance Systems - Bugbusters</projectName>
                             <skip>false</skip>
                             <!-- output directory for the generated report -->
                             <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
