@@ -50,37 +50,18 @@ public class BrowserUtils {
     }
 
     private static void initializeDriver(String browser) {
-        if(Boolean.parseBoolean(ConfigReader.readProperty("runInSaucelabs"))){
-            //SauceLabs login goes here...
-            String sauceUsername = ConfigReader.readProperty("sauceLabsUsername");
-            String sauceKey = ConfigReader.readProperty("sauceLabsKey");
-            String sauceURL = "https://" + sauceUsername + ":" + sauceKey + "@ondemand.us-west-1.saucelabs.com:443/wd/hub";
-            try{
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                capabilities.setCapability("version", "107");
-                capabilities.setCapability("platform", ConfigReader.readProperty("cloudPlatform"));
-                //capabilities.setCapability("platform", "Windows 11");
-                driver = new RemoteWebDriver(new URL(sauceURL), capabilities);
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-
+        switch (browser) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            default:
+                System.out.println("Invalid browser name");
         }
-        else{
-            switch (browser) {
-                case "chrome":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    break;
-                case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;
-                default:
-                    System.out.println("Invalid browser name");
-            }
-        }
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigReader.readProperty("url"));
