@@ -31,4 +31,6 @@ public class HomeSteps implements CommonPage {
     public void verifyHeaderTextIs(String headerTitle) {
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getTitle(), headerTitle);
     }
+
+
 }
