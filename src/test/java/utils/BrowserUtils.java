@@ -8,14 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 
@@ -130,14 +126,14 @@ public class BrowserUtils {
 
     public static void click(WebElement element) {
         //TODO: apply report -> logInfo("clicked the button ", element);
-        // CucumberLogUtils.logInfo("Click: " + splitElement(element),TAKESCREENSHOT);
+        CucumberLogUtils.logInfo("Click: " + splitElement(element),TAKESCREENSHOT);
         waitForElementClickability(element);
         moveIntoView(element);
         highlightElement(element);
         element.click();
     }
 
-    public static void waitScollAndHightlight(WebElement element) {
+    public static void waitScrollAndHighlight(WebElement element) {
         //TODO: apply report -> logInfo("clicked the button ", element);
         // CucumberLogUtils.logInfo("Click: " + splitElement(element),TAKESCREENSHOT);
         waitForElementVisibility(element);

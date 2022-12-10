@@ -8,6 +8,7 @@ public interface CommonPage {
 
     String XPATH_TEMPLATE_BUTTON = "//button[text()='%s']";
     String XPATH_TEMPLATE_LINKTEXT = "//a[text()='%s']";
+    String XPATH_TEMPLATE_FOOTERLINKHREF = "//footer//a[@href='%s']";
     String XPATH_TEMPLATE_TEXT = "//*[text()='%s']";
     String XPATH_TEMPLATE_TEXT_CONTAINS = "//*[contains(text(), '%s')]";
     String XPATH_TEMPLATE_OPTION = "//option[@value='%s']";
