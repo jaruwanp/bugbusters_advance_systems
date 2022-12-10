@@ -2,6 +2,7 @@ package step_definitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.CommonPage;
@@ -36,6 +37,20 @@ public class HomeSteps implements CommonPage {
     public void verify_phone_number_is(String phone) {
         BrowserUtils.assertEquals(BrowserUtils.getText(page.phoneNumber), phone);
     }
-
+    @Then("Verify social media button {string} is displayed")
+    public void verify_social_media_button_is_displayed(String socialBtns) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_HREF, socialBtns)
+        )));
+    }
+    @When("When I click {string}")
+    public void whenIClick(String icon) {
+        BrowserUtils.click(getElementByXpath(XPATH_TEMPLATE_HREF, icon));
+    }
+    @Then("Verify destination of related social media has URL as {string}")
+    public void verifyDestinationOfRelatedSocialMediaHasURLAs(String url) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), url);
+    }
 
 }
