@@ -79,4 +79,10 @@ public class HomeSteps implements CommonPage {
     public void iClickButtonEnglish() {
         BrowserUtils.click(page.langBtn);
     }
+
+    @When("I click top menu {string}")
+    public void iClickTopMenu(String navMenuBtn) {
+        WebElement element;
+
+    }
 }
