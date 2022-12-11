@@ -17,4 +17,17 @@ public class HomePage {
     public WebElement newDashboard;
 
 
+
+    @FindBy(xpath = "//div/ul[@class='topbar-menu']")
+    public WebElement menuBtn;
+
+    @FindBy (id = "dropdownMenu1")
+    public WebElement langBtn;
+
+
+
+
+
+
+
 }
