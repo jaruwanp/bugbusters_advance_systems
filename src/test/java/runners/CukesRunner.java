@@ -16,8 +16,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "step_definitions",
         stepNotifications = true,
-        dryRun = false,
-        tags = "@regression"
+        dryRun = false
+        ,tags = "@ABS-4 or @ABS-13"
+        //, tags = "@regression"
 
 )
 
