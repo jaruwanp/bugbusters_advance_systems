@@ -12,7 +12,7 @@ Feature: Home page tests
   Scenario: Test header of the home page
     Then Verify header text is "Advance Systems - Home"
 
-  @ASB-7 @regression
+  @ASB-7 @regression @smoke
   Scenario Outline: Verify navigation bar on the top right is displayed and enable
     Then Verify "<topNavBtn>" is displayed
     Then Verify "<topNavBtn>" is enable
@@ -25,7 +25,7 @@ Feature: Home page tests
       | Spanish     |
       | French      |
 
-  @ASB-8 @regression
+  @ASB-8 @regression @smoke
   Scenario Outline: Verify Join Now is displayed and enable
     Then Verify "<joinNow>" is displayed
     Then Verify "<joinNow>" is enable
@@ -34,7 +34,7 @@ Feature: Home page tests
       | joinNow  | url                                                               |
       | Join Now | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html |
 
-  @ASB-9 @regression
+  @ASB-9 @regression @smoke
   Scenario Outline: Verify second navigation bar on the top right is displayed and enable.
     Then verify "<navBar2>" is displayed when scroll down
     Then Verify "<navBar2>" navigate to window as url as "<url>"
@@ -47,7 +47,7 @@ Feature: Home page tests
       | Join Us    | https://tla-batch-6.github.io/advance-systems-test-b6/joinUs.html   |
       | Contact Us | https://tla-batch-6.github.io/advance-systems-test-b6/contact.html  |
 
-  @ASB-10 @regression
+  @ASB-10 @regression @smoke
   Scenario Outline: Verify social media is displayed and enable
     Then Verify "<socialMediaTop>" icon is displayed
     And Verify "<socialMediaTop>" direct to window as url as "<url>"
@@ -58,7 +58,7 @@ Feature: Home page tests
       | https://google.com   | https://www.google.com/   |
       | https://linkedin.com | https://www.linkedin.com/ |
 
-  @ASB-11
+  @ASB-11 @regression
   Scenario Outline: Verify these section is displayed
     Then Verify "<fiveBox>" is displayed
     Examples:
@@ -79,7 +79,7 @@ Feature: Home page tests
       | Email: Info@advancesystems.us       |
       | Mon to Sat: 9.00 am to 5:00 pm      |
 
-  @ASB-16 @regression
+  @ASB-16 @regression @smoke
   Scenario Outline:  Social media buttons displayed in the footer section
     Then Verify "<socialMediaBtn>" is displayed
     And Verify "<socialMediaBtn>" link to window as url as "<url>"
