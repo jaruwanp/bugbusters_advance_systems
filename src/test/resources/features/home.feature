@@ -90,4 +90,47 @@ Feature: Home page tests
       | https://skype.com    | https://www.skype.com/en/ |
       | https://linkedin.com | https://www.linkedin.com/ |
 
+  @ABS-4 @ABS-4A @regression @smoke
+  Scenario Outline: Test dynamic content in Parallax section
+    Then Verify the content in the Parallax will be dynamically changed every "<sec>" seconds
+    Examples:
+      | sec |
+      | 10     |
+      | 12     |
+
+  @ABS-4 @ASB-4B @regression @smoke
+  Scenario Outline: Test Read More buttons will take user to "Services" Page
+    When I wait for a header "<header>" to be presented
+    And I click a LinkText "<link>"
+    Then Verify that the button will take user to "<page>" Page
+    Examples:
+      | header                                  | link         | page     |
+      | A bright career is - waiting for you... | Read More    | Services |
+      | Think Big. - Achieve Bigger.            | Read More(2) | Services |
+
+  @ABS-15 @regression @smoke
+  Scenario:Test Footer quick links displayed and work as expected
+    When I scroll down to the footer of the homepage
+    Then Verify the following links that will contain its title
+      | Home           | Advance Systems - Home |
+      | About Us       | About Us               |
+      | Services       | Services               |
+      | Clients        | Clients                |
+      | Contact Us     | Contact Us             |
+      | Join Us        | Join Us                |
+      | FAQs           | FAQs                   |
+      | Job Career     | Job Career             |
+      | Meet Our Team  | Meet Our Team          |
+      | Privacy Policy | Privacy Policy         |
+
+  @ABS-13 @regression
+  Scenario: Test the list of company names displayed in 1 row
+    When I scroll down to the footer of the homepage
+    Then Verify that the list of the following company names display in one row
+      | SOLVE   | 1.png |
+      | Forbes  | 2.png |
+      | Infra   | 3.png |
+      | perlinX | 4.png |
+      | Alstom  | 5.png |
+      | Hasting | 6.png |
 
