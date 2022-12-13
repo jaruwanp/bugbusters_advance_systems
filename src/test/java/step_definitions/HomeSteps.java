@@ -52,5 +52,21 @@ public class HomeSteps implements CommonPage {
         BrowserUtils.switchToNewWindow();
         BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), url);
     }
-
+    @Then("Verify {string} is displayed")
+    public void verify_is_displayed(String joinNow) {
+        BrowserUtils.isDisplayed(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_HREF,joinNow)
+        )));
+    }
+    @Then("Verify {string} is enable")
+    public void verify_is_enable(String joinNow) {
+        BrowserUtils.isEnabled(BrowserUtils.getDriver().findElement(By.xpath(
+                String.format(XPATH_TEMPLATE_HREF,joinNow)
+        )));
+    }
+    @Then("Verify destination window has URL as {string}")
+    public void verify_destination_window_has_url_as(String url) {
+        BrowserUtils.switchToNewWindow();
+        BrowserUtils.assertEquals(BrowserUtils.getDriver().getCurrentUrl(), url);
+    }
 }

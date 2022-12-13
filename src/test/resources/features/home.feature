@@ -30,3 +30,12 @@ Feature: Home page tests
       | https://twitter.com  | https://twitter.com/       |
       | https://google.com   | https://www.google.com/    |
       | https://linkedin.com | https://www.linkedin.com/  |
+
+  @ASB-8 @regression @smoke
+  Scenario Outline: Main call to action button
+    Then Verify "<Join Now>" is displayed
+    Then Verify "<Join Now>" is enable
+    Then Verify destination window has URL as "<URL>"
+    Examples:
+      | Join Now    |         URL                                            |
+      | joinUs.html | https://tla-batch-6.github.io/advance-systems-test-b6/ |
