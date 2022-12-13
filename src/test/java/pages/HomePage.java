@@ -73,6 +73,7 @@ public class HomePage {
                 By.xpath("(//div[@class='inner'])[2]//ul/li//a[text()='" + text + "']"));
     }
     public List<WebElement> getCompanyImage(String img){
+        WebElement element;
         String path ="(//div[@class='owl-stage'])[3]/div/div/img[@src='images/clients/" + img+ "']";
         CucumberLogUtils.logInfo(path,false);
         return BrowserUtils.getDriver().findElements(By.xpath(path));

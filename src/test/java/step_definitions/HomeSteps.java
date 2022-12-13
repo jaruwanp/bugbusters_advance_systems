@@ -182,26 +182,23 @@ public class HomeSteps implements CommonPage {
     public void verifyTheContentInTheParallaxWillBeDynamicallyChangedEvery(String second) throws InterruptedException {
         int sec = Integer.valueOf(second);
         String path,content1,content2;
+        path = "//h2[normalize-space()='A bright career iswaiting for you...']";
+        WebDriverWait wait = new WebDriverWait(BrowserUtils.getDriver(),50);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(path)));
+
         path="//div[@id='rev_slider_one']";
 
         int refresh_in_millis = sec * 1000;
-        Thread.sleep(2000);
 
-        System.out.println(sec);
-        Thread.sleep(refresh_in_millis);
 
         content1 = BrowserUtils.getDriver().findElement(By.xpath(path)).getText();
-        //System.out.println("content1=" + content1);
-        //writeElementInfo(driver.findElement(By.xpath(path)));
-
-
-        Thread.sleep(refresh_in_millis);
-        content2 = BrowserUtils.getDriver().findElement(By.xpath(path)).getText();
-        System.out.println("content2=" + content2);
-        Thread.sleep(1000);
         CucumberLogUtils.logInfo("Refresh : " + second + " seconds",false);
         CucumberLogUtils.logInfo("Content(1) :" + content1,true);
 
+
+        //Thread.sleep(1000); // delay time for taking screenshot
+        Thread.sleep(refresh_in_millis);
+        content2 = BrowserUtils.getDriver().findElement(By.xpath(path)).getText();
         CucumberLogUtils.logInfo("Content(2) :" + content2,true);
 
         BrowserUtils.assertFalse(content1.equals(content2));
@@ -241,7 +238,7 @@ public class HomeSteps implements CommonPage {
 
     @Then("Verify that the button will take user to {string} Page")
     public void verifyThatTheButtonWillTakeUserToPage(String pageName) {
-
+        BrowserUtils.sleep(2000);
         BrowserUtils.assertTrue(BrowserUtils.getDriver().getTitle().toLowerCase().contains(pageName.toLowerCase()));
     }
 
@@ -260,6 +257,7 @@ public class HomeSteps implements CommonPage {
     public void iScrollDownToTheFooterOfTheHomepage() {
 
         BrowserUtils.moveIntoView(page.webFooter);
+        CucumberLogUtils.attachScreenshot(true);
         BrowserUtils.sleep(1000);
 
     }
@@ -272,15 +270,19 @@ public class HomeSteps implements CommonPage {
         Boolean result=false;
         for (String key:map.keySet()){
             page.getQuickLinkText(key).click();
+
             title = BrowserUtils.getDriver().getTitle();
             expectTitle = map.get(key);
             result =  title.toLowerCase().contains(expectTitle.toLowerCase());
+
             CucumberLogUtils.logInfo("Result=" + result + ", Link Text: " + key + " | Expect title contains : " + expectTitle + " | Actual Title: " + title,false);
             Assert.assertTrue(result);
-
+            BrowserUtils.sleep(2000);
+            CucumberLogUtils.attachScreenshot(true);
             // BrowserUtils.assertTrue(title.toLowerCase().contains(expectTitle.toLowerCase()));
             BrowserUtils.getDriver().get(ConfigReader.readProperty("url"));
             BrowserUtils.moveIntoView(page.webFooter);
+            BrowserUtils.sleep(1000);
 
         }
 
@@ -292,8 +294,18 @@ public class HomeSteps implements CommonPage {
 
         for (String key: map.keySet()){
             imgUrl = map.get(key);
+            List<WebElement> elements = page.getCompanyImage(imgUrl);
+            //there are some duplicated images, thus the function returned as arraylist
+
+
+            try {
+                BrowserUtils.highlightElement(elements.get(0));
+
+            } catch (Exception e) {
+
+            }
             CucumberLogUtils.logInfo("Company: " + key + ", img=" + imgUrl,false);
-            Assert.assertTrue(page.getCompanyImage(imgUrl).size() >0);
+            Assert.assertTrue(elements.size() >0);
         }
 
     }
