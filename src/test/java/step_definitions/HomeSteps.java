@@ -70,10 +70,6 @@ public class HomeSteps implements CommonPage {
         }
     }
 
-    @When("I click top menu {string}")
-    public void iClickTopMenu(String navMenuBtn) {
-        WebElement element;
 
-    }
 }
 
