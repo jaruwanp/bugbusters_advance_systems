@@ -34,49 +34,40 @@ public class HomeSteps implements CommonPage {
 
 //--------------------------------
 
-    @When("I click menu {string}")
-    public void iClickMenu(String menuBtn) {
-        BrowserUtils.click(BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT,menuBtn))
-        ));
-    }
-    @Then("Verify button {string} is displayed")
-    public void verifyButtonIsDisplayed(String button) {
-        BrowserUtils.isDisplayed(
-                BrowserUtils.getDriver().findElement(
-                        By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT,button)))
-        );
-    }
 
-    @Then("I Verify button {string} is enabled")
-    public void iVerifyButtonIsEnabled(String button) {
-        BrowserUtils.isEnabled(BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT,button)))
-        );
+    @Then("Verify button {string} is display")
+    public void verifyButtonIsDisplay(String navTopBtn) {
+        WebElement element = null;
+
+        switch (navTopBtn){
+            case "English":
+            case"Spanish":
+            case"French":
+                element = page.langBtn;
+                BrowserUtils.click(element);
+                BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_LINKTEXT,navTopBtn).isDisplayed());
+                break;
+            default:
+                element = BrowserUtils.getDriver().findElement(
+                        By.xpath(String.format(XPATH_TEMPLATE_TEXT_CONTAINS,navTopBtn)));
+                BrowserUtils.assertTrue(BrowserUtils.isDisplayed(element));
+                break;
+        }
     }
-
-    @When("I click  {string}")
-    public void iClick(String langMenuBtn) {
-        BrowserUtils.click(BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT,langMenuBtn)))
-        );
-    }
-
-    @Then("Verify button {string} is enabled")
-    public void verifyButtonIsEnabled(String langBtn) {
-        BrowserUtils.isEnabled(BrowserUtils.getDriver().findElement(
-                By.xpath(String.format(XPATH_TEMPLATE_LINKTEXT,langBtn)))
-        );
-    }
-
-
-    @When("I click button {string}")
-    public void iClickButton(String button) {
-        BrowserUtils.click(page.langBtn);
-    }
-
-    @When("I click button English")
-    public void iClickButtonEnglish() {
-        BrowserUtils.click(page.langBtn);
+    @Then("Verify button {string} is enable")
+    public void verifyButtonIsEnable(String navBtn) {
+        WebElement elelment;
+        switch (navBtn) {
+            case "English":
+            case "Spanish":
+            case "French":
+                elelment = page.langBtn;
+                BrowserUtils.click(elelment);
+                BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_LINKTEXT, navBtn).isEnabled());
+                break;
+            default:
+                BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_LINKTEXT, navBtn).isEnabled());
+        }
     }
 }
+
