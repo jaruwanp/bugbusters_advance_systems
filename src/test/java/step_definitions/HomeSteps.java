@@ -69,5 +69,11 @@ public class HomeSteps implements CommonPage {
                 BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_LINKTEXT, navBtn).isEnabled());
         }
     }
+
+    @When("I click top menu {string}")
+    public void iClickTopMenu(String navMenuBtn) {
+        WebElement element;
+
+    }
 }
 

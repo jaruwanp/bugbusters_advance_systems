@@ -15,6 +15,20 @@ Feature: Homepage tests
     Then Verify button "<nav top botton>" is display
     Then Verify button "<nav top botton>" is enable
     Examples:
+<<<<<<< HEAD
+=======
+      |nav lang button|
+      |English    |
+      |Spanish    |
+      |French     |
+
+    @ASB-7C @regression
+      Scenario Outline: Test languange Nav Button are displayed with scenerio outline
+      When I click top menu "<nav menu botton>"
+      Then Verify button "<nav top botton >" is display
+      Then Verify button "<nav top botton>" is enable
+      Examples:
+>>>>>>> 07d6b10b061a106b1763b2b25c346605330e2c57
       |nav top botton|
       |Get Support   |
       |Job Career    |
@@ -22,5 +36,13 @@ Feature: Homepage tests
       |English      |
       |Spanish      |
       |French       |
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 07d6b10b061a106b1763b2b25c346605330e2c57
 
 
