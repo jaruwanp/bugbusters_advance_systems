@@ -64,6 +64,10 @@ public class HomeSteps implements CommonPage {
                 String.format(XPATH_TEMPLATE_HREF,joinNow)
         )));
     }
+    @When("I click {string}")
+    public void i_click(String joinNow) {
+        BrowserUtils.click(getElementByXpath(XPATH_TEMPLATE_HREF,joinNow));
+    }
     @Then("Verify destination window has URL as {string}")
     public void verify_destination_window_has_url_as(String url) {
         BrowserUtils.switchToNewWindow();
