@@ -29,4 +29,7 @@ public class HomePage {
     @FindBy(xpath = "//div[@class='owl-item active']//figure[@class='thumb-box']/img")
     public WebElement clientPic;
 
+    @FindBy(id = "dropdownMenu1")
+    public WebElement langMenu;
+
 }

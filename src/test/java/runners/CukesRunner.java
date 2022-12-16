@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
         glue = "step_definitions",
         stepNotifications = true,
         dryRun = false,
-        tags = "@ASB-16"
+        tags = "@ASB-12A or @ASB-12B"
 
 )
 

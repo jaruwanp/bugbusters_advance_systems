@@ -41,6 +41,24 @@ public class HomeSteps implements CommonPage {
             case "https://linkedin.com":
                 BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_FOOTERLINKHREF, text).isDisplayed());
                 break;
+            default:
+                element = getElementByXpath(XPATH_TEMPLATE_TEXT_CONTAINS, text);
+                BrowserUtils.assertTrue(BrowserUtils.isDisplayed(element));
+                break;
+        }
+    }
+
+    @Then("Verify {string} is enable")
+    public void verifyIsEnable(String navBtn) {
+        WebElement element;
+        switch (navBtn) {
+            case "English":
+            case "Spanish":
+            case "French":
+                element = page.langMenu;
+                BrowserUtils.click(element);
+                BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_LINKTEXT, navBtn).isEnabled());
+                break;
             case "prevBtn":
                 BrowserUtils.clickWithJs(page.prevArrow);
                 BrowserUtils.assertTrue(BrowserUtils.isEnabled(page.prevArrow));
@@ -50,10 +68,9 @@ public class HomeSteps implements CommonPage {
                 BrowserUtils.assertTrue(BrowserUtils.isEnabled(page.nextArrow));
                 break;
             default:
-                element = getElementByXpath(XPATH_TEMPLATE_TEXT_CONTAINS, text);
-                BrowserUtils.assertTrue(BrowserUtils.isDisplayed(element));
-                break;
+                BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_LINKTEXT, navBtn).isEnabled());
         }
+
     }
 
     @And("Verify {string} matches to related {string}")
