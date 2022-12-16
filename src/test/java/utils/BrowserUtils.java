@@ -208,4 +208,12 @@ public class BrowserUtils {
         String result =element.toString().split(" -> ")[1];
         return result.substring(0,result.length()-1);
     }
+
+    public static void clickWithJs(WebElement element){
+        //TODO: apply report -> logInfo("clicked the button ", element);
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        CucumberLogUtils.logInfo("Clicked the button" + splitElement(element), TAKESCREENSHOT);
+        highlightElement(element);
+        js.executeScript("arguments[0].click(true);", element);
+    }
 }

@@ -11,4 +11,22 @@ public class HomePage {
         PageFactory.initElements(BrowserUtils.getDriver(), this);
     }
 
+    @FindBy(xpath = "//section[contains(@class,'testimonial')]")
+    public WebElement testimonialSection;
+
+    @FindBy(xpath = "//span[@class='icon-arrows']")
+    public WebElement prevArrow;
+
+    @FindBy(xpath = "//span[contains(@class,'right_arrow')]")
+    public WebElement nextArrow;
+
+    @FindBy(xpath = "//div[@class='owl-item active']//div[@class='text']")
+    public WebElement testimonial;
+
+    @FindBy(xpath = "//div[@class='owl-item active']//div[@class='designation']")
+    public WebElement state;
+
+    @FindBy(xpath = "//div[@class='owl-item active']//figure[@class='thumb-box']/img")
+    public WebElement clientPic;
+
 }
