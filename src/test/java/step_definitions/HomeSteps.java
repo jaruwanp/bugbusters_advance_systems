@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import pages.CommonPage;
 import pages.HomePage;
@@ -146,5 +147,33 @@ public class HomeSteps implements CommonPage {
                 CucumberLogUtils.logInfo(page.state.getText() + " : " + state, true);
             }
         }
+    }
+
+    @When("I scroll down the page")
+    public void iScrollDownThePage() {
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        js.executeScript("window.scrollBy(0,1000)");
+        CucumberLogUtils.logInfo("Scroll down the window", false);
+    }
+
+    @When("I click button {string}")
+    public void iClickButton(String button) {
+        WebElement element;
+
+        switch (button) {
+            case "upArrowBtn":
+                element = page.upArrowbtn;
+                BrowserUtils.clickWithJs(element);
+                CucumberLogUtils.logInfo("Clicked the button: " + page.upArrowbtn.toString().split(" -> ")[1], true);
+                break;
+            default:
+                BrowserUtils.click(getElementByXpath(XPATH_TEMPLATE_LINKHREF, button));
+        }
+    }
+
+    @Then("Verify the window is scrolled up top content")
+    public void verifyTheWindowIsScrolledUpTopContent() {
+        BrowserUtils.isDisplayed(page.header);
+        CucumberLogUtils.logInfo("Window is scrolled up to the top", true);
     }
 }

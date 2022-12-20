@@ -35,4 +35,10 @@ public class HomePage {
     @FindBy(id = "dropdownMenu1")
     public WebElement langMenu;
 
+    @FindBy(xpath = "//div[@data-target='html']")
+    public WebElement upArrowbtn;
+
+    @FindBy(tagName = "header")
+    public WebElement header;
+
 }
