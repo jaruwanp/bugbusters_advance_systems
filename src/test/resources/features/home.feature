@@ -130,3 +130,9 @@ Feature: Home page tests
       | Alstom  | 5.png |
       | Hasting | 6.png |
 
+
+  @ASB-20 @regression
+  Scenario: Verify specific headers and text are displayed as expected
+    Then Verify "Welcome to Advance Systems LLC." is displayed
+    Then Verify "Our Mission is simple, deliver very honest recruitment services to every customer." is displayed
+    Then Verify text is displayed under the above headers.

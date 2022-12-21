@@ -88,6 +88,11 @@ public class HomeSteps implements CommonPage {
             case "https://linkedin.com":
                 BrowserUtils.assertTrue(getElementByXpath(XPATH_TEMPLATE_FOOTERLINKHREF, txt).isDisplayed());
                 break;
+            case "Welcome to Advance Systems LLC.":
+            case "Our Mission is simple, deliver very honest recruitment services to every customer.":
+                element = getElementByXpath(XPATH_TEMPLATE_TEXT, txt);
+                BrowserUtils.assertTrue(BrowserUtils.isDisplayed(element));
+                break;
             default:
                 element = BrowserUtils.getDriver().findElement(By.xpath(String.format(XPATH_TEMPLATE_TEXT_CONTAINS, txt)));
                 BrowserUtils.assertTrue(BrowserUtils.isDisplayed(element));
@@ -319,7 +324,24 @@ public class HomeSteps implements CommonPage {
     public void verifyTheDisplayedAboveThePictureOfTheWriter(String message, String person) {
     }
 
-//------------------- End of Jaruwan -------------------
+    //------------------- End of Jaruwan -------------------
+
+
+
+
+
+    @Then("Verify text is displayed under the above headers.")
+    public void verifyTextIsDisplayedUnderTheAboveHeaders() {
+        int textYPosition = page.mainTxt.getLocation().getY();
+        int mainHeaderPosition = getElementByXpath(XPATH_TEMPLATE_TEXT_CONTAINS, "Welcome to Advance").getLocation().getY();
+        int secondHeaderPosition = getElementByXpath(XPATH_TEMPLATE_TEXT_CONTAINS, "deliver very honest recruitment").getLocation().getY();
+        JavascriptExecutor js = (JavascriptExecutor) BrowserUtils.getDriver();
+        js.executeScript("window.scrollBy(100,-300)");
+        CucumberLogUtils.logInfo("Text's position y: " + textYPosition + "\n" + "Main header's position y: " + mainHeaderPosition +
+                "\n" + "Second header's position y: " + secondHeaderPosition, true);
+        //BrowserUtils.isDisplayed(page.mainTxt);
+        BrowserUtils.assertTrue(textYPosition > mainHeaderPosition && textYPosition > secondHeaderPosition);
+    }
 }
 
 

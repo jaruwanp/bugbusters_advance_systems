@@ -79,6 +79,9 @@ public class HomePage {
         return BrowserUtils.getDriver().findElements(By.xpath(path));
     }
 
+    @FindBy(xpath = "//div[@class='text']/p")
+    public WebElement mainTxt;
+
 
 
 //(//div[@class='inner'])[2]//ul/li//a

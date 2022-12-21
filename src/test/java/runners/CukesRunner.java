@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
         glue = "step_definitions",
         stepNotifications = true,
         dryRun = false
-        ,tags = "@ABS-4 or @ABS-13"
+        ,tags = "@ASB-20"
         //, tags = "@regression"
 
 )
