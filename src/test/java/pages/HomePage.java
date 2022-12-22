@@ -41,4 +41,7 @@ public class HomePage {
     @FindBy(tagName = "header")
     public WebElement header;
 
+    @FindBy(xpath = "//div[@class='text']/p")
+    public WebElement mainTxt;
+
 }

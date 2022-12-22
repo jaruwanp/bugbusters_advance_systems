@@ -32,8 +32,14 @@ Feature: Home page tests
 #      | https://skype.com    | https://www.skype.com/en/   |
 #      | https://linkedin.com | https://www.linkedin.com/   |
 
-  @ASB-18 @smoke @regression
-  Scenario: Verify button in the bottom right corner of the page that would scroll the window to top content once clicked
-    When I scroll down the page
-    And I click button "upArrowBtn"
-    Then Verify the window is scrolled up top content
+#  @ASB-18 @smoke @regression
+#  Scenario: Verify button in the bottom right corner of the page that would scroll the window to top content once clicked
+#    When I scroll down the page
+#    And I click button "upArrowBtn"
+#    Then Verify the window is scrolled up top content
+
+  @ASB-20 @regression
+  Scenario: Verify specific headers and text are displayed as expected
+    Then Verify "Welcome to Advance Systems LLC." is displayed
+    Then Verify "Our Mission is simple, deliver very honest recruitment services to every customer." is displayed
+    Then Verify text is displayed under the above headers.
